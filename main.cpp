@@ -1,7 +1,11 @@
-#include <iostream>
-#include <iostream>
 #include <sstream> // for ostringstream
 #include <string>
+#include <variant>
+#include <map>
+#include <iostream>
+#include <cassert>
+#include <typeinfo>
+#include <type_traits>
 using namespace std;
 
 struct jsonData {
@@ -14,16 +18,28 @@ struct json {
     jsonData data;
 };
 
-void parse(json *data, ostringstream *out)
-{
-//    sizeOut = out->str().size();
+// Example
+void hashMap(){
+    map<string, string> m;
+    m["hello"] = "23";
+    // check if key is present
+    if (m.find("world") != m.end())
+      cout << "map contains key world!\n";
+    // retrieve
+    cout << m["hello"] << endl;
+    map<string, string>::iterator i = m.find("hello");
+    assert(i != m.end());
+    cout << "Key: " << i->first << "\n" << "Value: " << i->second << '\n';
+}
 
-    data->root = "data";
-    data->data.key = "teste";
-    data->data.value = "valor";
-    //cout << "{ " << data->data.key << ": " << data->data.value << " }" << endl;
-    out[0] << "{ " << data->data.key << ": " << data->data.value << " }" << endl;
-    out[1] << "{ " << data->data.key << ": " << data->data.value << " }" << endl;
+map<string, string> create()
+{
+    return map<string, string>;
+}
+
+void parse()
+{
+    // TODO: create json.dumps
 }
 
 int main()
@@ -33,6 +49,7 @@ int main()
     ostringstream out[2];
     //int sizeOut = 0;
     parse(sumOfTwoNumbers, out);
+    hashMap();
     //cout << out[1].tellp() << endl;
     for (int i = 0; i < 2; i++){
         cout << out[i].str();
